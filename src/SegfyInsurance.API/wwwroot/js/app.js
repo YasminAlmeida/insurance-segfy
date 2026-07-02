@@ -71,9 +71,23 @@ function setupEventListeners() {
     btnCancelModal.addEventListener('click', closeFormModal);
     policyForm.addEventListener('submit', handleFormSubmit);
 
+    // Close form modal when clicking outside (on the overlay background)
+    policyModal.addEventListener('click', (e) => {
+        if (e.target === policyModal) {
+            closeFormModal();
+        }
+    });
+
     // Confirm Actions
     btnCancelConfirm.addEventListener('click', closeConfirmModal);
     btnConfirmDelete.addEventListener('click', executeDelete);
+
+    // Close confirm modal when clicking outside (on the overlay background)
+    confirmModal.addEventListener('click', (e) => {
+        if (e.target === confirmModal) {
+            closeConfirmModal();
+        }
+    });
 }
 
 // State Setter
