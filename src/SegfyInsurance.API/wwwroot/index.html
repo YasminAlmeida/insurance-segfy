@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segfy Seguros - Gestão de Apólices</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="brand">
+                <div class="brand-info">
+                    <h1>Segfy Seguros</h1>
+                    <p>Portal de Apólices de Automóvel</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="btnOpenNewModal">
+                    Nova Apólice
+                </button>
+            </div>
+        </header>
+
+        <!-- Summary Cards -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-details">
+                    <p class="stat-label">Total de Apólices</p>
+                    <h3 id="statTotal">0</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-details">
+                    <p class="stat-label">Apólices Ativas</p>
+                    <h3 id="statActive">0</h3>
+                </div>
+            </div>
+            <div class="stat-card card-warning" id="cardExpiringSoon">
+                <div class="stat-details">
+                    <p class="stat-label">Vencendo em 30 Dias</p>
+                    <h3 id="statExpiring">0</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Area -->
+        <main class="content-card">
+            <!-- Filter Tabs -->
+            <div class="table-header">
+                <div class="tabs">
+                    <button class="tab-btn active" data-filter="all" id="tabAll">
+                        Todas as Apólices
+                    </button>
+                    <button class="tab-btn" data-filter="expiring" id="tabExpiring">
+                        Próximos 30 dias (SQL Query)
+                    </button>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Pesquisar por CPF, Placa ou Apólice...">
+                </div>
+            </div>
+
+            <!-- Loader -->
+            <div class="loader-container" id="loader">
+                <div class="spinner"></div>
+                <p>Carregando apólices...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state hidden" id="emptyState">
+                <h3>Nenhuma apólice encontrada</h3>
+                <p>Cadastre uma nova apólice ou ajuste os filtros de pesquisa.</p>
+            </div>
+
+            <!-- Grid/Table Area -->
+            <div class="table-responsive" id="tableContainer">
+                <table class="policy-table">
+                    <thead>
+                        <tr>
+                            <th>Nº Apólice</th>
+                            <th>Segurado (CPF/CNPJ)</th>
+                            <th>Placa</th>
+                            <th>Valor do Prêmio</th>
+                            <th>Vigência (Início - Fim)</th>
+                            <th>Status</th>
+                            <th style="text-align: right;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="policiesTableBody">
+                        <!-- Filled by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Form (Create / Edit) -->
+    <div class="modal-overlay hidden" id="policyModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalTitle">Cadastrar Nova Apólice</h2>
+                <button class="close-btn" id="btnCloseModal">Fechar</button>
+            </div>
+            <form id="policyForm" novalidate>
+                <input type="hidden" id="policyId">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="inputCpfCnpj">CPF / CNPJ do Segurado *</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="inputCpfCnpj" required placeholder="000.000.000-00 ou 00.000.000/0000-00">
+                        </div>
+                        <span class="error-msg" id="errCpfCnpj"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPlaca">Placa do Veículo *</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="inputPlaca" required placeholder="AAA-9999 ou AAA9A99" maxlength="9">
+                        </div>
+                        <span class="error-msg" id="errPlaca"></span>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="inputPremio">Valor do Prêmio Mensal (R$) *</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="inputPremio" required placeholder="150.00" step="0.01" min="0.01">
+                        </div>
+                        <span class="error-msg" id="errPremio"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputDataInicio">Início da Vigência *</label>
+                        <div class="input-wrapper">
+                            <input type="date" id="inputDataInicio" required>
+                        </div>
+                        <span class="error-msg" id="errDataInicio"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputDataFim">Fim da Vigência *</label>
+                        <div class="input-wrapper">
+                            <input type="date" id="inputDataFim" required>
+                        </div>
+                        <span class="error-msg" id="errDataFim"></span>
+                    </div>
+                </div>
+
+                <div class="form-errors hidden" id="formGlobalErrors">
+                    <ul id="globalErrorsList"></ul>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="btnCancelModal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btnSubmitForm">Salvar Apólice</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirm Dialog -->
+    <div class="modal-overlay hidden" id="confirmModal">
+        <div class="modal confirm-dialog">
+            <h2>Confirmar Exclusão</h2>
+            <p>Deseja realmente excluir permanentemente a apólice <strong id="deletePolicyNumber"></strong>? Esta ação não poderá ser desfeita.</p>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="btnCancelConfirm">Não, Cancelar</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmDelete">Sim, Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- JavaScript Application -->
+    <script src="js/app.js"></script>
+</body>
+</html>

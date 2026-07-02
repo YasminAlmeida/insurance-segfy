@@ -1,0 +1,26 @@
+## Build outputs
+[Bb]in/
+[Oo]bj/
+
+## User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+## IDEs and editors
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.suo
+*.keys.json
+
+## Databases (SQLite local)
+insurance.db
+insurance.db-shm
+insurance.db-wal
+
+## OS files
+.DS_Store
+Thumbs.db

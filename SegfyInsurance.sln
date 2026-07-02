@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3C43AF80-BFED-4510-84F1-01505D022313}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SegfyInsurance.Domain", "src\SegfyInsurance.Domain\SegfyInsurance.Domain.csproj", "{EC53B91A-62E4-44CB-8B7D-E97B3A1FB4D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SegfyInsurance.Application", "src\SegfyInsurance.Application\SegfyInsurance.Application.csproj", "{DA416296-52F7-47FA-9F9C-B2CAD62A7388}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SegfyInsurance.Infrastructure", "src\SegfyInsurance.Infrastructure\SegfyInsurance.Infrastructure.csproj", "{45779FEE-D16C-4275-825D-11A0A2DC9017}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SegfyInsurance.API", "src\SegfyInsurance.API\SegfyInsurance.API.csproj", "{0E1B3B61-C353-4808-B5D4-994DB092100A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5B796814-27CC-4402-8BA6-89FEC7AEDEA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SegfyInsurance.Tests", "tests\SegfyInsurance.Tests\SegfyInsurance.Tests.csproj", "{7DB45660-92F0-4841-82A2-5CAB15FB0248}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC53B91A-62E4-44CB-8B7D-E97B3A1FB4D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC53B91A-62E4-44CB-8B7D-E97B3A1FB4D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC53B91A-62E4-44CB-8B7D-E97B3A1FB4D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC53B91A-62E4-44CB-8B7D-E97B3A1FB4D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA416296-52F7-47FA-9F9C-B2CAD62A7388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA416296-52F7-47FA-9F9C-B2CAD62A7388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA416296-52F7-47FA-9F9C-B2CAD62A7388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA416296-52F7-47FA-9F9C-B2CAD62A7388}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45779FEE-D16C-4275-825D-11A0A2DC9017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45779FEE-D16C-4275-825D-11A0A2DC9017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45779FEE-D16C-4275-825D-11A0A2DC9017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45779FEE-D16C-4275-825D-11A0A2DC9017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E1B3B61-C353-4808-B5D4-994DB092100A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E1B3B61-C353-4808-B5D4-994DB092100A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E1B3B61-C353-4808-B5D4-994DB092100A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E1B3B61-C353-4808-B5D4-994DB092100A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DB45660-92F0-4841-82A2-5CAB15FB0248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DB45660-92F0-4841-82A2-5CAB15FB0248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DB45660-92F0-4841-82A2-5CAB15FB0248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DB45660-92F0-4841-82A2-5CAB15FB0248}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EC53B91A-62E4-44CB-8B7D-E97B3A1FB4D0} = {3C43AF80-BFED-4510-84F1-01505D022313}
+		{DA416296-52F7-47FA-9F9C-B2CAD62A7388} = {3C43AF80-BFED-4510-84F1-01505D022313}
+		{45779FEE-D16C-4275-825D-11A0A2DC9017} = {3C43AF80-BFED-4510-84F1-01505D022313}
+		{0E1B3B61-C353-4808-B5D4-994DB092100A} = {3C43AF80-BFED-4510-84F1-01505D022313}
+		{7DB45660-92F0-4841-82A2-5CAB15FB0248} = {5B796814-27CC-4402-8BA6-89FEC7AEDEA7}
+	EndGlobalSection
+EndGlobal
